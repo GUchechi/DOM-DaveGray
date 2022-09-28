@@ -1,14 +1,24 @@
-const myArray = ["eat", "code", "sleep"];
+const users = fetch("https://jsonplaceholder.typicode.com/users")
+console.log(users)
 
- const myObj = {
-    name: 'Dave',
-    hobbies:["eat", "code", "sleep"],
-    logName: function() {
-        console.log(this.name);
-    }
- }
+fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => {
+        return response.json();
+    }).then (data => {
+        data.forEach(user => {
+            console.log(user);
+        })
+    })
 
+const myCoolFunction = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const jsonUserData = await response.json();
+    return jsonUserData;
+}
 
-const mySessionData = JSON.parse(localStorage.getItem('mySessionStore'));
-localStorage.setItem("myLocalStore", JSON.stringify(myArray));
-console.log(myLocalData);
+const anotherFunction = async () => {
+    const data = await myCoolFunction();
+    console.log(data);
+}
+
+anotherFunction();
